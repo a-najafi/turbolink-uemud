@@ -368,12 +368,10 @@ void TURBOLINK_TO_GRPC(const FGrpcModeFieldPair* in, ::mode::FieldPair* out)
 void GRPC_TO_TURBOLINK(const ::mode::ProjectedField* in, FGrpcModeProjectedField* out)
 {
     GRPC_TO_TURBOLINK(&(in->field()), &(out->Field));
-    switch(in->_rename_case())
+    if(in->has_rename())
     {
-    case ::mode::ProjectedField::kRename:
         out->_rename.Rename=UTF8_TO_TCHAR(in->rename().c_str());
         out->_rename._renameCase = EGrpcModeProjectedField_rename::Rename;
-        break;
     }
 }
 
